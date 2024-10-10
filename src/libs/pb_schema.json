@@ -1,0 +1,157 @@
+[
+  {
+    "id": "eceei85id2cyxxt",
+    "name": "players",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "nudqysj2",
+        "name": "dx_rating",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": 0,
+          "max": null,
+          "noDecimal": true
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": null,
+    "viewRule": "@request.auth.id != null",
+    "createRule": "",
+    "updateRule": "@request.auth.id != null",
+    "deleteRule": null,
+    "options": {
+      "allowEmailAuth": false,
+      "allowOAuth2Auth": false,
+      "allowUsernameAuth": true,
+      "exceptEmailDomains": [],
+      "manageRule": null,
+      "minPasswordLength": 8,
+      "onlyEmailDomains": [],
+      "onlyVerified": false,
+      "requireEmail": false
+    }
+  },
+  {
+    "id": "z8rozjntki1u1x6",
+    "name": "scores",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "sky2ww1w",
+        "name": "player",
+        "type": "relation",
+        "required": true,
+        "presentable": true,
+        "unique": false,
+        "options": {
+          "collectionId": "eceei85id2cyxxt",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "p2kdxtt0",
+        "name": "screenshot",
+        "type": "file",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "mimeTypes": [
+            "image/png",
+            "image/jpeg"
+          ],
+          "thumbs": [],
+          "maxSelect": 1,
+          "maxSize": 15728640,
+          "protected": false
+        }
+      },
+      {
+        "system": false,
+        "id": "rjeteyco",
+        "name": "chart_name",
+        "type": "text",
+        "required": true,
+        "presentable": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "nsznklcl",
+        "name": "score_verified",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "sk9o15bd",
+        "name": "difficulty",
+        "type": "number",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": 1,
+          "max": 15,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "xcp15x88",
+        "name": "achievement",
+        "type": "number",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "pwgc7cut",
+        "name": "rank",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": 1,
+          "max": 4,
+          "pattern": ""
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "@request.auth.id != null",
+    "viewRule": "@request.auth.id != null",
+    "createRule": "@request.auth.id != null",
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  }
+]

@@ -4,6 +4,8 @@ import AuthenticatedLayout from '../components/AuthenticatedLayout.vue';
 
 <template>
 	<AuthenticatedLayout>
+		<!-- TODO: Put everything from ProfilePage here -->
 		<p>Hello, there!</p>
+		<!-- TODO: Show 10 best score -->
 	</AuthenticatedLayout>
 </template>

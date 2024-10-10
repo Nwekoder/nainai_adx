@@ -9,6 +9,8 @@ import ScoresPage from "./pages/ScoresPage.vue";
 import ProfilePage from "./pages/ProfilePage.vue";
 import CropTestPage from "./pages/CropTestPage.vue";
 
+// TODO: Remove ProfilePage SAFELY!
+
 const router = createRouter({
   history: createMemoryHistory(),
   routes: [

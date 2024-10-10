@@ -70,6 +70,8 @@ function handleInputChange() {
 		const difficultySrc = cropDifficulty(croppedImage)
 		imgDifficultyRef.value!.src = difficultySrc
 
+		// TODO: Crop and show achievement rate and rank
+
 		// Text Recognition Parts
 		const chartNameImage = new Image()
 		chartNameImage.src = chartNameSrc
@@ -77,14 +79,6 @@ function handleInputChange() {
 		chartNameImage.onload = async () => {
 			scoreInfo.value.chart_name = await runOCR(chartNameImage)
 		}
-
-		// TODO: Delete this SAFELY!
-		// const DXScoreImage = new Image()
-		// DXScoreImage.src = DXScoreSrc
-
-		// DXScoreImage.onload = async () => {
-		// 	scoreInfo.value.dx_score = Number((await runOCR(DXScoreImage)).replace(/[^0-9]+/g, ""))
-		// }
 
 		// TODO: Recognize achievement rate and rank
 
@@ -177,36 +171,52 @@ function cropChartName(img: HTMLImageElement) {
 	return canvas.toDataURL("image/png")
 }
 
-// TODO: Delete this function SAFELY!
-// function cropDXScore(img: HTMLImageElement) {
-// 	const x = img.width * 0.345
-// 	const y = img.height * 0.68
-// 	const w = img.width * 0.1375
-// 	const h = img.height * 0.0725
-
-// 	const canvas = document.createElement("canvas")
-
-// 	canvas.width = w
-// 	canvas.height = h
-
-// 	const ctx = canvas.getContext("2d")!
-
-// 	ctx.filter = "grayscale(100%) contrast(200%) brightness(150%)"
-// 	ctx.drawImage(img, x, y, w, h, 0, 0, w, h)
-
-// 	const imageData = ctx.getImageData(0, 0, img.width, img.height)
-// 	const sharpenedData = applySharpenFilter(imageData)
-// 	ctx.putImageData(sharpenedData, 0, 0)
-
-// 	return canvas.toDataURL("image/png")
-// }
-
 function cropAchievement(img: HTMLImageElement) {
-	// TODO: Work on this!
+	// TODO: Tune this!
+	const x = img.width * 0.345
+	const y = img.height * 0.68
+	const w = img.width * 0.1375
+	const h = img.height * 0.0725
+
+	const canvas = document.createElement("canvas")
+
+	canvas.width = w
+	canvas.height = h
+
+	const ctx = canvas.getContext("2d")!
+
+	ctx.filter = "grayscale(100%) contrast(200%) brightness(150%)"
+	ctx.drawImage(img, x, y, w, h, 0, 0, w, h)
+
+	const imageData = ctx.getImageData(0, 0, img.width, img.height)
+	const sharpenedData = applySharpenFilter(imageData)
+	ctx.putImageData(sharpenedData, 0, 0)
+
+	return canvas.toDataURL("image/png")
 }
 
 function cropRank(img: HTMLImageElement) {
-	// TODO: Work on this!
+	// TODO: Tune this!
+	const x = img.width * 0.345
+	const y = img.height * 0.68
+	const w = img.width * 0.1375
+	const h = img.height * 0.0725
+
+	const canvas = document.createElement("canvas")
+
+	canvas.width = w
+	canvas.height = h
+
+	const ctx = canvas.getContext("2d")!
+
+	ctx.filter = "grayscale(100%) contrast(200%) brightness(150%)"
+	ctx.drawImage(img, x, y, w, h, 0, 0, w, h)
+
+	const imageData = ctx.getImageData(0, 0, img.width, img.height)
+	const sharpenedData = applySharpenFilter(imageData)
+	ctx.putImageData(sharpenedData, 0, 0)
+
+	return canvas.toDataURL("image/png")
 }
 
 function cropDifficulty(img: HTMLImageElement) {

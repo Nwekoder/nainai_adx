@@ -58,6 +58,7 @@ async function handleLogin() {
 
 				<button v-if="!authLoading" type="submit" class="button w-full mt-4 hover:bg-slate-900 bg-slate-800 text-neutral-50">Login</button>
 				<button v-else disabled type="submit" class="button w-full mt-4 opacity-70 bg-slate-800 text-neutral-50">...</button>
+				<!-- TODO: Create a registration page -->
 			</form>
 		</div>
 
