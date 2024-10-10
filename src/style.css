@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-control {
+    @apply w-full relative last:mb-0 mb-4;
+}
+
+.form-control label {
+    @apply absolute -top-3 left-3 px-2 bg-inherit text-sm;
+}
+
+.form-control input[type="text"],
+.form-control input[type="password"],
+.form-control input[type="number"] {
+    @apply w-full px-3 py-2 rounded-sm border border-neutral-900 outline-none;
+}
+
+.button {
+    @apply px-3 py-2 rounded-sm transition-colors;
+}
