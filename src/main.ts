@@ -6,10 +6,7 @@ import App from "./App.vue";
 import LoginPage from "./pages/LoginPage.vue";
 import HomePage from "./pages/HomePage.vue";
 import ScoresPage from "./pages/ScoresPage.vue";
-import ProfilePage from "./pages/ProfilePage.vue";
 import CropTestPage from "./pages/CropTestPage.vue";
-
-// TODO: Remove ProfilePage SAFELY!
 
 const router = createRouter({
   history: createMemoryHistory(),
@@ -25,10 +22,6 @@ const router = createRouter({
     {
         path: '/scores',
         component: ScoresPage
-    },
-    {
-        path: '/profile',
-        component: ProfilePage
     },
     {
         path: '/croptest',

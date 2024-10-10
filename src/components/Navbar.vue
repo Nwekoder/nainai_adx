@@ -70,7 +70,6 @@ function handleLogout() {
 
 				<div class="flex flex-col">
 					<RouterLink to="/home" class="transition-colors hover:bg-neutral-300 px-3 py-2">Home</RouterLink>
-					<RouterLink to="/profile" class="transition-colors hover:bg-neutral-300 px-3 py-2">Profile</RouterLink>
 					<RouterLink to="/scores" class="transition-colors hover:bg-neutral-300 px-3 py-2">Scores</RouterLink>
 					<RouterLink to="/croptest" class="transition-colors hover:bg-neutral-300 px-3 py-2">CropTest</RouterLink>
 				</div>

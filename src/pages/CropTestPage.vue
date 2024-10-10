@@ -70,7 +70,8 @@ function handleInputChange() {
 		const difficultySrc = cropDifficulty(croppedImage)
 		imgDifficultyRef.value!.src = difficultySrc
 
-		// TODO: Crop and show achievement rate and rank
+		const achievementSrc = cropAchievement(croppedImage)
+		imgAchievementRef.value!.src = achievementSrc
 
 		// Text Recognition Parts
 		const chartNameImage = new Image()
@@ -80,14 +81,21 @@ function handleInputChange() {
 			scoreInfo.value.chart_name = await runOCR(chartNameImage)
 		}
 
-		// TODO: Recognize achievement rate and rank
-
 		const difficultyImage = new Image()
 		difficultyImage.src = difficultySrc
 
 		difficultyImage.onload = async () => {
 			const readedScore = (await runOCR(difficultyImage)).replace(/[^0-9+]+/g, "")
 			scoreInfo.value.difficulty = Number(readedScore.endsWith("+") ? readedScore.replace(/[^0-9]+/g, "") + ".5" : readedScore.replace(/[^0-9]+/g, ""))
+		}
+
+		// FIXME: Make it toFixed(4)
+		const achievementImage = new Image()
+		achievementImage.src = achievementSrc
+
+		achievementImage.onload = async () => {
+			const readedScore = (await runOCR(achievementImage)).replace(/[^0-9.]+/g, "")
+			scoreInfo.value.achievement = Number(readedScore.endsWith("+") ? readedScore.replace(/[^0-9.]+/g, "") + ".5" : readedScore.replace(/[^0-9.]+/g, ""))
 		}
 	}
 }
@@ -172,35 +180,10 @@ function cropChartName(img: HTMLImageElement) {
 }
 
 function cropAchievement(img: HTMLImageElement) {
-	// TODO: Tune this!
-	const x = img.width * 0.345
-	const y = img.height * 0.68
-	const w = img.width * 0.1375
-	const h = img.height * 0.0725
-
-	const canvas = document.createElement("canvas")
-
-	canvas.width = w
-	canvas.height = h
-
-	const ctx = canvas.getContext("2d")!
-
-	ctx.filter = "grayscale(100%) contrast(200%) brightness(150%)"
-	ctx.drawImage(img, x, y, w, h, 0, 0, w, h)
-
-	const imageData = ctx.getImageData(0, 0, img.width, img.height)
-	const sharpenedData = applySharpenFilter(imageData)
-	ctx.putImageData(sharpenedData, 0, 0)
-
-	return canvas.toDataURL("image/png")
-}
-
-function cropRank(img: HTMLImageElement) {
-	// TODO: Tune this!
-	const x = img.width * 0.345
-	const y = img.height * 0.68
-	const w = img.width * 0.1375
-	const h = img.height * 0.0725
+	const x = img.width * 0
+	const y = img.height * 0.24
+	const w = img.width * 0.35
+	const h = img.height * 0.0985
 
 	const canvas = document.createElement("canvas")
 
@@ -301,9 +284,6 @@ async function uploadScore() {
 
 				<p>Achievement Rate : {{ scoreInfo.achievement }}</p>
 				<img ref="imgAchievementRef" class="mb-8" />
-
-				<p>Rank : {{ scoreInfo.rank }}</p>
-				<img ref="imgRankRef" class="mb-8" />
 
 				<button @click="uploadScore" :disabled="!readyToUpload" type="button" class="button disabled:opacity-50 bg-green-600 w-full text-white hover:bg-green-700">Upload!</button>
 			</div>
